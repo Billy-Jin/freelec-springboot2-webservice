@@ -30,4 +30,10 @@ public class Posts {
         this.author = author;
     }
 
+    //3.4 추가
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+
 }
