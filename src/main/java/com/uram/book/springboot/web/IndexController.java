@@ -1,5 +1,6 @@
 package com.uram.book.springboot.web;
 
+import com.uram.book.springboot.config.auth.LoginUser;
 import com.uram.book.springboot.config.auth.dto.SessionUser;
 import com.uram.book.springboot.service.posts.PostsService;
 import com.uram.book.springboot.web.dto.PostsResponseDto;
@@ -19,10 +20,11 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
+
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         System.out.println(user);
+
         if(user != null){
             model.addAttribute("userName", user.getName());
         }
